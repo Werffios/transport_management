@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Asignación Exitosa</h2>
+<p>El vehículo ha sido asignado a la ruta correctamente.</p>
+<a href="{% url 'assign_vehicle' %}">Asignar Otro Vehículo</a>
+<a href="{% url 'assignment_logs' %}">Ver Registro de Asignaciones</a>
+{% endblock %}

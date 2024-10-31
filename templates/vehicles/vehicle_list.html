@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Lista de Vehículos</h2>
+<a href="{% url 'vehicle_create' %}">Crear Nuevo Vehículo</a>
+<table>
+    <tr>
+        <th>Matrícula</th>
+        <th>Estado</th>
+        <th>Tipo de Vehículo</th>
+        <th>Ruta Asignada</th>
+        <th>Acciones</th>
+    </tr>
+    {% for vehicle in vehicles %}
+    <tr>
+        <td>{{ vehicle.plate_number }}</td>
+        <td>{{ vehicle.status }}</td>
+        <td>{{ vehicle.get_vehicle_type_display }}</td>
+        <td>
+            {% if vehicle.route %}
+                {{ vehicle.route.name }}
+            {% else %}
+                No asignada
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'vehicle_update' vehicle.pk %}">Editar</a> |
+            <a href="{% url 'vehicle_delete' vehicle.pk %}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

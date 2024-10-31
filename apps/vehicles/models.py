@@ -10,9 +10,14 @@ class Vehicle(models.Model):
         ('CAR', 'Automóvil'),
         ('SUV', 'SUV'),
     ]
+    STATUS_CHOICES = [
+        ('AVAILABLE', 'Disponible'),
+        ('IN_MAINTENANCE', 'En Mantenimiento'),
+        ('IN_TRANSIT', 'En Tránsito'),
+    ]
 
     plate_number = models.CharField(max_length=10, unique=True)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     vehicle_type = models.CharField(max_length=5, choices=VEHICLE_TYPE_CHOICES)
     route = models.ForeignKey(Route, on_delete=models.SET_NULL, null=True, blank=True)
 

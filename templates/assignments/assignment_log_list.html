@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Registro de Asignaciones</h2>
+<form method="get">
+    <input type="text" name="plate_number" placeholder="Filtrar por Matrícula" value="{{ request.GET.plate_number }}">
+    <button type="submit">Filtrar</button>
+</form>
+<table>
+    <tr>
+        <th>Matrícula del Vehículo</th>
+        <th>Nombre de la Ruta</th>
+        <th>Fecha de Asignación</th>
+    </tr>
+    {% for log in logs %}
+    <tr>
+        <td>{{ log.vehicle_plate }}</td>
+        <td>{{ log.route_name }}</td>
+        <td>{{ log.assignment_date }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No hay registros de asignaciones.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Lista de Rutas</h2>
+<a href="{% url 'route_create' %}">Crear Nueva Ruta</a>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Origen</th>
+        <th>Destino</th>
+        <th>Distancia</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+    </tr>
+    {% for route in routes %}
+    <tr>
+        <td>{{ route.name }}</td>
+        <td>{{ route.origin }}</td>
+        <td>{{ route.destination }}</td>
+        <td>{{ route.distance }}</td>
+        <td>{{ route.get_route_type_display }}</td>
+        <td>
+            <a href="{% url 'route_update' route.pk %}">Editar</a> |
+            <a href="{% url 'route_delete' route.pk %}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

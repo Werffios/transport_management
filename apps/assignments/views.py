@@ -27,7 +27,7 @@ class AssignVehicleView(View):
                 )
                 return redirect('assignment_success')
             else:
-                form.add_error(None, 'Vehicle type does not match route type.')
+                form.add_error(None, 'El vehículo no es adecuado para la ruta seleccionada')
         return render(request, 'assignments/assign_vehicle.html', {'form': form})
 
     def is_valid_assignment(self, vehicle, route):
